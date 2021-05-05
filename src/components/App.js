@@ -41,6 +41,7 @@ function App() {
         `https://api.chucknorris.io/jokes/random`
     );
     const data = await response.json();
+    await new Promise(resolve => setTimeout(resolve, 500))
     setData(data);
     setLoading(false);
 };
@@ -54,10 +55,10 @@ function App() {
   }
   return (
     <div className={classes.paper}>
-      <Avatar alt="Chuck Norris" src={chuck} className={classes.avatar} />
         <Typography component="h1" variant="h5">
-        Joke of the day
+        Chuckinator
         </Typography>
+      <Avatar alt="Chuck Norris" src={chuck} className={classes.avatar} />
       {loading ? <CircularProgress /> : <Joke joke={data} />}
        <Button   type="submit"
             fullWidth

@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import RateMe from './RateMe'
 
 const SimpleDialog = ({ showDialog, setShowDialog }) => ( <Dialog onClose={()=> setShowDialog(false)} aria-labelledby="simple-dialog-title" open={showDialog}>
 <DialogTitle id="simple-dialog-title">I don't know?</DialogTitle></Dialog>)
@@ -17,9 +18,7 @@ const SimpleDialog = ({ showDialog, setShowDialog }) => ( <Dialog onClose={()=> 
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Sign up for our newsletter!"}
-              </Link>
+              <RateMe />
             </Grid>
             <SimpleDialog showDialog={showDialog} setShowDialog={setShowDialog} />
           </Grid>
