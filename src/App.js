@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [status, setStatus] = useState('idle');
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    setStatus('*** loading ***');
+    const response = await fetch(
+        `https://api.chucknorris.io/jokes/random`
+    );
+    const data = await response.json();
+    setData(data.value);
+    setStatus('done');
+};
+
+  useEffect(() => {
+      fetchData();
+  }, []);
+
+  const newJokeOnClick = () => {
+    fetchData()
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Joke of the day [{status}]</h1>
+      <p>{data}</p>
+      <button onClick={newJokeOnClick}>New Joke</button>
     </div>
   );
 }
